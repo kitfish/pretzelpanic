@@ -39,7 +39,7 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
         if (kitchenObject != null)
         {
-            //OnAnyObjectPlacedHere?.Invole(this, EventArgs.Empty);
+            OnAnyObjectPlacedHere?.Invoke(this, EventArgs.Empty);
         }
     }
 

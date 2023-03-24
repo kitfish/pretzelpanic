@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ba6956d78903b47bc1b1f909a91b54, type: 3}
   m_Name: PretzelBitsCooked-PretzelBitsBurned
   m_EditorClassIdentifier: 
-  input: {fileID: 0}
-  output: {fileID: 0}
-  burningTimerMax: 0
+  input: {fileID: 11400000, guid: 2b7a9b36ecf3af34f93f23ff7fd42e99, type: 2}
+  output: {fileID: 11400000, guid: 6c739136b7b849e4eb1cfb9c823ce928, type: 2}
+  burningTimerMax: 8

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4057d96da812d5542a7a724d9e1645d7, type: 3}
   m_Name: PretzelBitsBurned
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8320793830228283794, guid: 675fa3dfb7a57504a9c1525e2c31f224, type: 3}
+  prefab: {fileID: 8320793830228283794, guid: 446d5fa80235eab48bbf4b237ff71ea5, type: 3}
   sprite: {fileID: 0}
-  objectName: Pretzel Bit Cooked
+  objectName: Pretzel Bit Burned
