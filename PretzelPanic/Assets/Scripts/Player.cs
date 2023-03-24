@@ -88,8 +88,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 if (baseCounter != selectedCounter)
                 {
                     SetSelectedCounter(baseCounter);
-                    Debug.Log("HIT!");
-
                 }
             }
             else
