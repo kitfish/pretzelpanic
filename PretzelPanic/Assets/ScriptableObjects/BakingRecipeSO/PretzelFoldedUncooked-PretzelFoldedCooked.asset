@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f3d44f1cc199d4fbd49c7b7705a081, type: 3}
+  m_Name: PretzelFoldedUncooked-PretzelFoldedCooked
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: fcbeb450b197b694e832b815b8d16cf2, type: 2}
+  output: {fileID: 11400000, guid: c244475fb820d28458dc55e30f1443df, type: 2}
+  bakingTimerMax: 10

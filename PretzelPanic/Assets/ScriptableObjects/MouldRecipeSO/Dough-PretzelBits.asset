@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f4af84ce912a34387da6fc9130a14b, type: 3}
+  m_Name: Dough-PretzelBits
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 6a014cd74c8c33e4889cedc72a63c2dc, type: 2}
+  output: {fileID: 11400000, guid: d141f876216ed2846bc3de5228be78c5, type: 2}
+  mouldProgressMax: 3
