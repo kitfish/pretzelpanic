@@ -7,6 +7,29 @@ public class KitchenObject : MonoBehaviour
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
 
     private IKitchenObjectParent kitchenObjectParent;
+    private bool isMoving = false;
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            
+            if(Physics.SphereCast(transform.position, 1f, new Vector3(transform.position.x + 2.2f, transform.position.y - 0.25f, transform.position.z), out RaycastHit hitInfo))
+            {
+                Debug.Log(hitInfo.transform.name);
+                isMoving = false;
+            }
+
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (isMoving)
+        {
+            Gizmos.DrawWireSphere(new Vector3(transform.position.x + 2.2f, transform.position.y - 0.25f, transform.position.z), 1.0f);
+        }
+    }
 
     public KitchenObjectSO GetKitchenObjectSO()
     {
@@ -67,5 +90,22 @@ public class KitchenObject : MonoBehaviour
         kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
 
         return kitchenObject;
+    }
+
+    public bool IsMoving()
+    {
+        return isMoving;
+    }
+
+    public void SetIsMoving(bool moving)
+    {
+        isMoving = moving;
+
+        if (!isMoving) 
+        {
+            // capsule is temp. we will use a sphere for all kitchen objects for ease of interacting
+            CapsuleCollider kitchenObjectCapsuleCollider = GetComponent<CapsuleCollider>();
+            kitchenObjectCapsuleCollider.enabled = false;
+        }
     }
 }

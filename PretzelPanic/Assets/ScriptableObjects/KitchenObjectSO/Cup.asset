@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f4af84ce912a34387da6fc9130a14b, type: 3}
-  m_Name: Dough-PretzelBits
+  m_Script: {fileID: 11500000, guid: 4057d96da812d5542a7a724d9e1645d7, type: 3}
+  m_Name: Cup
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: 6a014cd74c8c33e4889cedc72a63c2dc, type: 2}
-  output: {fileID: 11400000, guid: d141f876216ed2846bc3de5228be78c5, type: 2}
-  moldProgressMax: 3
+  prefab: {fileID: 8320793830228283794, guid: 8fd6bec804e7a1e40b4ba0ac04dbb478, type: 3}
+  sprite: {fileID: 0}
+  objectName: Cup

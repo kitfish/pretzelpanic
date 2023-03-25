@@ -43,6 +43,27 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         {
             selectedCounter.InteractAlternate(this);
         }
+        else
+        {
+            // if player is attempting to throw the held Kitchen Object
+            if (kitchenObject != null)
+            {
+                Rigidbody kitchenObjectRigidBody = kitchenObject.GetComponent<Rigidbody>();
+
+                Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+
+                float throwDistance = 10f;
+                float throwArcHeight = 5f;
+
+                kitchenObjectRigidBody.AddForce(new Vector3(inputVector.x * throwDistance, throwArcHeight, inputVector.y * throwDistance), ForceMode.Impulse);
+                kitchenObjectRigidBody.useGravity = true;
+                kitchenObject.GetComponent<CapsuleCollider>().enabled = true;
+                kitchenObject.SetIsMoving(true);
+
+                kitchenObject.transform.parent = null;
+                ClearKitchenObject();
+            }
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
@@ -52,7 +73,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         if (selectedCounter != null)
         {
             selectedCounter.Interact(this);
-        }
+        } 
     }
 
     private void Update()
