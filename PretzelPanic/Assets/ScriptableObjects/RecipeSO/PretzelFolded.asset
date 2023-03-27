@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a744aed6d75215647b99c636c9cc0a04, type: 3}
   m_Name: PretzelFolded
   m_EditorClassIdentifier: 
-  kitchenObjectSOList: []
-  recipeName: 
+  kitchenObjectSOList:
+  - {fileID: 11400000, guid: c244475fb820d28458dc55e30f1443df, type: 2}
+  recipeName: Pretzel Folded

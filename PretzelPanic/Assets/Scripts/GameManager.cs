@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 
     public bool IsGamePlaying()

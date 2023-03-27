@@ -14,10 +14,24 @@ public class KitchenObject : MonoBehaviour
         if (isMoving)
         {
             
-            if(Physics.SphereCast(transform.position, 1f, new Vector3(transform.position.x + 2.2f, transform.position.y - 0.25f, transform.position.z), out RaycastHit hitInfo))
+            if(Physics.SphereCast(transform.position, 1f, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), out RaycastHit hitInfo))
             {
+                kitchenObjectParent = null;
                 Debug.Log(hitInfo.transform.name);
                 isMoving = false;
+
+                if (hitInfo.transform.TryGetComponent(out BaseCounter baseCounter))
+                {
+                    //baseCounter.SetKitchenObject(this);
+                    if (!baseCounter.HasKitchenObject())
+                    {
+                        SpawnKitchenObject(kitchenObjectSO, baseCounter);
+                        Destroy(gameObject);
+                    }
+
+                    //SetKitchenObjectParent(baseCounter);
+                    //DestroySelf();
+                }
             }
 
         }
@@ -27,7 +41,7 @@ public class KitchenObject : MonoBehaviour
     {
         if (isMoving)
         {
-            Gizmos.DrawWireSphere(new Vector3(transform.position.x + 2.2f, transform.position.y - 0.25f, transform.position.z), 1.0f);
+            Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), 1.0f);
         }
     }
 
@@ -52,8 +66,12 @@ public class KitchenObject : MonoBehaviour
 
         kitchenObjectParent.SetKitchenObject(this);
 
-        transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
-        transform.localPosition = Vector3.zero;
+        if (kitchenObjectParent != null)
+        {
+            transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
+            transform.localPosition = Vector3.zero;
+        }
+
     }
 
     public IKitchenObjectParent GetKitchenObjectParent()

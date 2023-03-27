@@ -55,12 +55,16 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 float throwDistance = 10f;
                 float throwArcHeight = 5f;
 
-                kitchenObjectRigidBody.AddForce(new Vector3(inputVector.x * throwDistance, throwArcHeight, inputVector.y * throwDistance), ForceMode.Impulse);
+                Vector3 throwDirection = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
+
+                kitchenObjectRigidBody.AddForce(throwDirection * throwDistance + Vector3.up * throwArcHeight, ForceMode.Impulse);
+                
                 kitchenObjectRigidBody.useGravity = true;
                 kitchenObject.GetComponent<CapsuleCollider>().enabled = true;
                 kitchenObject.SetIsMoving(true);
 
                 kitchenObject.transform.parent = null;
+                //kitchenObject.SetKitchenObjectParent(null);
                 ClearKitchenObject();
             }
         }
