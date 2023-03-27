@@ -22,6 +22,13 @@ public class KitchenObject : MonoBehaviour
 
                 if (hitInfo.transform.TryGetComponent(out BaseCounter baseCounter))
                 {
+                    if (baseCounter.TryGetComponent(out TrashCounter trashCounter) || baseCounter.TryGetComponent(out ContainerCounter containerCounter))
+                    {
+                        Destroy(gameObject);
+                        return;
+                    }
+
+
                     //baseCounter.SetKitchenObject(this);
                     if (!baseCounter.HasKitchenObject())
                     {
