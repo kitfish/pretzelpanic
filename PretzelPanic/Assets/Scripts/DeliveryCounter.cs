@@ -19,7 +19,7 @@ public class DeliveryCounter : BaseCounter
             {
                 // Currently only accepts buckets. 
 
-                //DeliveryManager.Instance.DeliverRecipe(bucketKitchenObject);
+                DeliveryManager.Instance.DeliverRecipe(bucketKitchenObject);
                 player.GetKitchenObject().DestroySelf();
             }
 

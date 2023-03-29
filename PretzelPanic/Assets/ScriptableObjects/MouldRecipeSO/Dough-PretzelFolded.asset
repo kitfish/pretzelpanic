@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 6a014cd74c8c33e4889cedc72a63c2dc, type: 2}
   output: {fileID: 11400000, guid: fcbeb450b197b694e832b815b8d16cf2, type: 2}
-  mouldProgressMax: 4
+  moldProgressMax: 3
