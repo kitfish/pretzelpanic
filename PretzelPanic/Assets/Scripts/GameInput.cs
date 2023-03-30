@@ -10,6 +10,7 @@ public class GameInput : MonoBehaviour
 
     public event EventHandler OnInteractAction;
     public event EventHandler OnInteractAlternateAction;
+    public event EventHandler OnDashAction;
 
     private PlayerInputActions playerInputActions;
 
@@ -23,6 +24,12 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+        playerInputActions.Player.Dash.performed += Dash_performed;
+    }
+
+    private void Dash_performed(InputAction.CallbackContext obj)
+    {
+        OnDashAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void InteractAlternate_performed(InputAction.CallbackContext obj)

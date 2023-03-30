@@ -21,8 +21,12 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private BaseCounter selectedCounter;
     private bool isMoving;
+    private bool canDash;
+    private float dashTimer;
     private Vector3 lastInteractDirection;
     private KitchenObject kitchenObject;
+    private Rigidbody playerRigidBody;
+
 
     private void Awake()
     {
@@ -33,6 +37,26 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
         GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+        GameInput.Instance.OnDashAction += GameInput_OnDashAction;
+
+        playerRigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void GameInput_OnDashAction(object sender, EventArgs e)
+    {
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+
+        if (IsMoving() && canDash)
+        {
+            canDash = false;
+            dashTimer = 0.25f;
+
+            float dashDistance = 8f;
+            Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+            moveDir.x *= dashDistance;
+            moveDir.z *= dashDistance;
+            playerRigidBody.AddForce(moveDir,ForceMode.Impulse);
+        }
     }
 
     private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
@@ -129,6 +153,16 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void HandleMovement()
     {
+        if (!canDash)
+        {
+            dashTimer -= Time.deltaTime;
+            if (dashTimer < 0)
+            {
+                canDash = true;
+                playerRigidBody.velocity = Vector3.zero;
+            }
+        }
+
         Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
 
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
