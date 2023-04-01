@@ -21,8 +21,11 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private BaseCounter selectedCounter;
     private bool isMoving;
+    private float dashDistance = 8f;
     private bool canDash;
     private float dashTimer;
+    private float playerRadius = 0.7f;
+    private float playerHeight = 2f;
     private Vector3 lastInteractDirection;
     private KitchenObject kitchenObject;
     private Rigidbody playerRigidBody;
@@ -45,17 +48,16 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private void GameInput_OnDashAction(object sender, EventArgs e)
     {
         Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         if (IsMoving() && canDash)
         {
             canDash = false;
             dashTimer = 0.25f;
 
-            float dashDistance = 8f;
-            Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
             moveDir.x *= dashDistance;
             moveDir.z *= dashDistance;
-            playerRigidBody.AddForce(moveDir,ForceMode.Impulse);
+            playerRigidBody.AddForce(moveDir, ForceMode.Impulse);          
         }
     }
 
@@ -154,8 +156,23 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private void HandleMovement()
     {
 
+        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
+
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        float moveDistance = moveSpeed * Time.deltaTime;
+
+        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
+
         if (!canDash)
         {
+            float moveDashDistance = moveDistance * dashDistance;
+            bool canMoveDash = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDashDistance);
+            if (!canMoveDash)
+            {
+                playerRigidBody.velocity = Vector3.zero;
+            }
+
             dashTimer -= Time.deltaTime;
             if (dashTimer < 0)
             {
@@ -163,15 +180,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 playerRigidBody.velocity = Vector3.zero;
             }
         }
-
-        Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
-
-        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        float moveDistance = moveSpeed * Time.deltaTime;
-        float playerRadius = 0.7f;
-        float playerHeight = 2f;
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
 
         if (!canMove)
         {
