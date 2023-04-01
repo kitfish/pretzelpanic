@@ -153,6 +153,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private void HandleMovement()
     {
+
         if (!canDash)
         {
             dashTimer -= Time.deltaTime;
@@ -208,6 +209,10 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         {
             transform.position += moveDir * moveDistance;
         }
+
+        // Sets the rotation to zero
+        //transform.eulerAngles = Vector3.zero;
+
         isMoving = moveDir != Vector3.zero;
         float rotateSpeed = 10f;
         transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
