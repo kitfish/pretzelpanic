@@ -59,7 +59,6 @@ GameObject:
   - component: {fileID: 8552139235375651896}
   - component: {fileID: 3175626388752192747}
   - component: {fileID: 1452216786610769689}
-  - component: {fileID: 1936255060186866443}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -132,27 +131,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1936255060186866443
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297897576798664327}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7206268599654471370
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +142,6 @@ GameObject:
   - component: {fileID: 1172461783354995535}
   - component: {fileID: 5119239069318610018}
   - component: {fileID: 4371064595931278022}
-  - component: {fileID: 5500835892571433629}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -237,27 +214,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5500835892571433629
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7206268599654471370}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5950516676295534047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,22 +280,22 @@ PrefabInstance:
     - target: {fileID: 2814994538759837770, guid: eb56bd30ecde0eb42a75e7c237a8bcb5,
         type: 3}
       propertyPath: m_Size.x
-      value: 1.1688552
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2814994538759837770, guid: eb56bd30ecde0eb42a75e7c237a8bcb5,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.1688552
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2814994538759837770, guid: eb56bd30ecde0eb42a75e7c237a8bcb5,
         type: 3}
       propertyPath: m_Size.z
-      value: 1.1688552
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2814994538759837770, guid: eb56bd30ecde0eb42a75e7c237a8bcb5,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.084427595
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3315636519094475615, guid: eb56bd30ecde0eb42a75e7c237a8bcb5,
         type: 3}
