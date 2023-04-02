@@ -6,9 +6,16 @@ using UnityEngine;
 public class DeliveryManager : MonoBehaviour
 {
     public event EventHandler OnRecipeSpawned;
-    public event EventHandler OnRecipeCompleted;
+    public event EventHandler<OnRecipeCompletedEventArgs> OnRecipeCompleted;
     public event EventHandler OnRecipeSuccess;
     public event EventHandler OnRecipeFailed;
+
+    
+    public class OnRecipeCompletedEventArgs : EventArgs
+    {
+        public RecipeSO recipeSO;
+    }
+    
 
     public static DeliveryManager Instance { get; private set; }
     [SerializeField] private RecipeListSO recipeListSO;
@@ -80,10 +87,13 @@ public class DeliveryManager : MonoBehaviour
 
                     successfulRecipesAmount++;
 
-                    waitingRecipeSOList.RemoveAt(i);
-
-                    OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+                    OnRecipeCompleted?.Invoke(this, new OnRecipeCompletedEventArgs
+                    {
+                        recipeSO = waitingRecipeSOList[i]
+                    });
                     OnRecipeSuccess?.Invoke(this, EventArgs.Empty);
+
+                    waitingRecipeSOList.RemoveAt(i);
                     return;
                 }
             }

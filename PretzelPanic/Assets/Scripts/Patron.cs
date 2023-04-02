@@ -4,21 +4,65 @@ using UnityEngine;
 
 public class Patron : MonoBehaviour
 {
+    private RecipeSO patronDesiredRecipeSO;
 
+    private enum TypeOfPatron
+    {
+        PasserBy,
+        Customer,
+    }
+
+    private TypeOfPatron typeOfPatron;
+
+
+    private void Update()
+    {
+        switch (typeOfPatron)
+        {
+            case TypeOfPatron.PasserBy:
+                HandlePasserBy();
+                break;
+            case TypeOfPatron.Customer:
+                HandleCustomer();
+                break;
+        }
+    }
 
     private void Start()
     {
-        RobotCashier.Instance.OnRobotBreakdown += RobotCashier_OnRobotBreakdown;
-        RobotCashier.Instance.OnRobotRepair += RobotCashier_OnRobotRepair;
+        DeliveryManager.Instance.OnRecipeCompleted += DeliveryManager_OnRecipeCompleted;
     }
 
-    private void RobotCashier_OnRobotRepair(object sender, System.EventArgs e)
+    private void DeliveryManager_OnRecipeCompleted(object sender, DeliveryManager.OnRecipeCompletedEventArgs e)
     {
-        //throw new System.NotImplementedException();
+        if (e.recipeSO == patronDesiredRecipeSO)
+        {
+            HandleCustomerLeave();
+        }
     }
 
-    private void RobotCashier_OnRobotBreakdown(object sender, System.EventArgs e)
+    private void HandleCustomer()
     {
-        //throw new System.NotImplementedException();
+
+    }
+
+    private void HandlePasserBy()
+    {
+
+    }
+
+    private void HandleCustomerLeave()
+    {
+
+    }
+
+    public bool IsCutomer()
+    {
+        return typeOfPatron == TypeOfPatron.Customer;
+    }
+
+    public bool IsPasserBy()
+    {
+        return typeOfPatron == TypeOfPatron.PasserBy;
     }
 }

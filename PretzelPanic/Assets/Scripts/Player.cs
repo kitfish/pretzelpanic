@@ -82,9 +82,12 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 float throwDistance = 10f;
                 float throwArcHeight = 3.5f;
 
-                Vector3 throwDirection = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
+                //Vector3 throwDirection = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
+                //Vector3 throwDirection = new Vector3(, 0f, inputVector.y).normalized;
+                //Vector3 throwDirection = transform.eulerAngles.normalized;
 
-                kitchenObjectRigidBody.AddForce(throwDirection * throwDistance + Vector3.up * throwArcHeight, ForceMode.Impulse);
+                //kitchenObjectRigidBody.AddForce(Vector3.forward * throwDistance + Vector3.up * throwArcHeight, ForceMode.Impulse);
+                kitchenObjectRigidBody.AddForce(lastInteractDirection * throwDistance + Vector3.up * throwArcHeight, ForceMode.Impulse);
                 
                 kitchenObjectRigidBody.useGravity = true;
                 kitchenObject.GetComponent<CapsuleCollider>().enabled = true;
