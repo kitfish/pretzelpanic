@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class KitchenObject : MonoBehaviour
 {
@@ -8,16 +11,21 @@ public class KitchenObject : MonoBehaviour
 
     private IKitchenObjectParent kitchenObjectParent;
     private bool isMoving = false;
+    private float sphereCastRadius = 0.75f;
+    private float sphereCastOffsetY = 0.25f;
 
     private void Update()
     {
+ 
+
         if (isMoving)
         {
-            
-            if(Physics.SphereCast(transform.position, 1f, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), out RaycastHit hitInfo))
+            kitchenObjectParent = null;
+            //if(Physics.CapsuleCast(transform.position, transform.position + Vector3.up, sphereCastRadius, Vector3.down, out RaycastHit hitInfo))
+            if (Physics.SphereCast(transform.position, sphereCastRadius, new Vector3(transform.position.x, transform.position.y - sphereCastOffsetY, transform.position.z), out RaycastHit hitInfo))
             {
-                kitchenObjectParent = null;
-                Debug.Log(hitInfo.transform.name);
+                
+                //Debug.Log(hitInfo.transform.name);
                 isMoving = false;
 
                 if (hitInfo.transform.TryGetComponent(out BaseCounter baseCounter))
@@ -42,13 +50,19 @@ public class KitchenObject : MonoBehaviour
             }
 
         }
+
+        if (kitchenObjectParent != null)
+        {
+            transform.position = kitchenObjectParent.GetKitchenObjectFollowTransform().position;
+        }
+
     }
 
     private void OnDrawGizmos()
     {
         if (isMoving)
         {
-            Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), 1.0f);
+            Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y - sphereCastOffsetY, transform.position.z), sphereCastRadius);
         }
     }
 

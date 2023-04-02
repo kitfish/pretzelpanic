@@ -74,12 +74,13 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             // if player is attempting to throw the held Kitchen Object
             if (kitchenObject != null)
             {
+                kitchenObject.transform.parent = null;
                 Rigidbody kitchenObjectRigidBody = kitchenObject.GetComponent<Rigidbody>();
 
                 Vector2 inputVector = GameInput.Instance.GetMovementVectorNormalized();
 
                 float throwDistance = 10f;
-                float throwArcHeight = 5f;
+                float throwArcHeight = 3.5f;
 
                 Vector3 throwDirection = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
 
@@ -89,7 +90,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 kitchenObject.GetComponent<CapsuleCollider>().enabled = true;
                 kitchenObject.SetIsMoving(true);
 
-                kitchenObject.transform.parent = null;
+                
                 //kitchenObject.SetKitchenObjectParent(null);
                 ClearKitchenObject();
             }
