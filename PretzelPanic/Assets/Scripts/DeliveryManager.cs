@@ -13,7 +13,6 @@ public class DeliveryManager : MonoBehaviour
     public static DeliveryManager Instance { get; private set; }
     [SerializeField] private RecipeListSO recipeListSO;
 
-
     private List<RecipeSO> waitingRecipeSOList;
     private float spawnRecipeTimer;
     private float spawnRecipeTimerMax = 4f;
@@ -29,7 +28,7 @@ public class DeliveryManager : MonoBehaviour
     private void Update()
     {
         spawnRecipeTimer -= Time.deltaTime;
-        if (spawnRecipeTimer <= 0f)
+        if (!RobotCashier.Instance.IsBroken() && spawnRecipeTimer <= 0f)
         {
             spawnRecipeTimer = spawnRecipeTimerMax;
 

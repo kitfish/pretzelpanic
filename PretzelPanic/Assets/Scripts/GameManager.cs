@@ -36,7 +36,9 @@ public class GameManager : MonoBehaviour
     {
         GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
         GameInput.Instance.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+
     }
+
 
     private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
     {

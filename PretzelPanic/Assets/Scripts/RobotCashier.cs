@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 
-public class RobotCashier : MonoBehaviour
+public class RobotCashier : BaseCounter
 {
 
     public static RobotCashier Instance { get; private set; }
@@ -15,7 +15,7 @@ public class RobotCashier : MonoBehaviour
     private bool isBroken = false;
     private float breakdownTimer = 4f;
     private float breakdownTimerMin = 4f;
-    private float breakdownTimerMax = 10f;
+    private float breakdownTimerMax = 6f;
 
 
     private void Awake()
@@ -40,6 +40,14 @@ public class RobotCashier : MonoBehaviour
                 isBroken = true;
                 OnRobotBreakdown?.Invoke(this, EventArgs.Empty);
             }
+        }
+    }
+
+    public override void Interact(Player player)
+    {
+        if (isBroken)
+        {
+            RepairRobot();
         }
     }
 
