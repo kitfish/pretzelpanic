@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class PatronManager : MonoBehaviour
 {
+    [SerializeField] private GameObject patronGameObject;
     [SerializeField] private int patronListSizeMax;
     private List<GameObject> patronListArray;
+    private int patronSpawmAmount = 0;
+    private int patronSpawmAmountMax = 4;
+    private float patronSpawnTimer = 0;
+    private float patronSpawnTimerMax = 3f;
 
     public static PatronManager Instance { get; private set; }
-
-    
 
     private void Awake()
     {
@@ -18,23 +21,25 @@ public class PatronManager : MonoBehaviour
         patronListArray = new List<GameObject>(patronListSizeMax);
     }
 
-    private void Start()
+    private void Update()
     {
-        DeliveryManager.Instance.OnRecipeCompleted += DeliveryManager_OnRecipeCompleted;
-    }
+        patronSpawnTimer -= Time.deltaTime;
 
-    // I dont think we need to use a list and can just put this event into the patron itself
-    private void DeliveryManager_OnRecipeCompleted(object sender, DeliveryManager.OnRecipeCompletedEventArgs e)
-    {
-        if (e.recipeSO == this)
+        if (patronSpawnTimer < 0)
         {
-
+            patronSpawnTimer = patronSpawnTimerMax;
+            if (patronSpawmAmount < patronSpawmAmountMax)
+            {
+                SpawnPatron();
+            }
         }
 
-        // send recipe from the onrecipe completed event in delivery manager
-        // assign recipe to patrons that are customers
-        // scan list for the patron with the first instance of the recipe
-        // remove them from list
-        // handle making that patron leave/vanish or something
     }
+
+    private void SpawnPatron()
+    {
+        GameObject patron = Instantiate(patronGameObject, new Vector3(20f, 1f, 7f), Quaternion.identity);  
+    }
+
+
 }

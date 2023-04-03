@@ -6,24 +6,23 @@ public class Patron : MonoBehaviour
 {
     private RecipeSO patronDesiredRecipeSO;
 
-    private enum TypeOfPatron
+    private enum State
     {
-        PasserBy,
-        Customer,
+        GettingInLine,
+        WaitingToOrder,
+        OrderingFood,
+        WaitingForFood,
+        Angry,
+        Leaving
     }
 
-    private TypeOfPatron typeOfPatron;
-
+    private State state;
 
     private void Update()
     {
-        switch (typeOfPatron)
+        switch (state)
         {
-            case TypeOfPatron.PasserBy:
-                HandlePasserBy();
-                break;
-            case TypeOfPatron.Customer:
-                HandleCustomer();
+            case State.GettingInLine:
                 break;
         }
     }
@@ -31,38 +30,13 @@ public class Patron : MonoBehaviour
     private void Start()
     {
         DeliveryManager.Instance.OnRecipeCompleted += DeliveryManager_OnRecipeCompleted;
+        state = State.GettingInLine;
     }
 
     private void DeliveryManager_OnRecipeCompleted(object sender, DeliveryManager.OnRecipeCompletedEventArgs e)
     {
-        if (e.recipeSO == patronDesiredRecipeSO)
-        {
-            HandleCustomerLeave();
-        }
+        //if (e.recipeSO) { }
     }
 
-    private void HandleCustomer()
-    {
 
-    }
-
-    private void HandlePasserBy()
-    {
-
-    }
-
-    private void HandleCustomerLeave()
-    {
-
-    }
-
-    public bool IsCutomer()
-    {
-        return typeOfPatron == TypeOfPatron.Customer;
-    }
-
-    public bool IsPasserBy()
-    {
-        return typeOfPatron == TypeOfPatron.PasserBy;
-    }
 }
