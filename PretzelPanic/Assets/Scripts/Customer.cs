@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patron : MonoBehaviour
+public class Customer : MonoBehaviour
 {
-    private RecipeSO patronDesiredRecipeSO;
+    private RecipeSO customerRequestedRecipeSO;
 
     private enum State
     {
@@ -13,7 +13,7 @@ public class Patron : MonoBehaviour
         OrderingFood,
         WaitingForFood,
         Angry,
-        Leaving
+        OrderComplete
     }
 
     private State state;
@@ -23,6 +23,10 @@ public class Patron : MonoBehaviour
         switch (state)
         {
             case State.GettingInLine:
+                break;
+
+                case State.OrderComplete:
+                Destroy(gameObject);
                 break;
         }
     }
@@ -38,5 +42,13 @@ public class Patron : MonoBehaviour
         //if (e.recipeSO) { }
     }
 
+    public RecipeSO GetCustomerRequestedRecipe()
+    {
+        return customerRequestedRecipeSO;
+    }
 
+    public void SetOrderCompleteState()
+    {
+        state = State.OrderComplete;
+    }
 }

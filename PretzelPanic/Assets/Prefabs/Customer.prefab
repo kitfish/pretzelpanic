@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1749811888398845798}
   - component: {fileID: 5081608157159549255}
   m_Layer: 5
-  m_Name: PatronTextUI
+  m_Name: CustomerTextUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6560471199280190100}
   - component: {fileID: 3584491969235269352}
   m_Layer: 5
-  m_Name: PatronText
+  m_Name: CustomerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 4539216002643054830}
   - component: {fileID: 3955174477791882299}
   m_Layer: 0
-  m_Name: Patron
+  m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

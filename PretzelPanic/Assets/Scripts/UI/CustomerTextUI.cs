@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatronTextUI : MonoBehaviour
+public class CustomerTextUI : MonoBehaviour
 {
     private void Start()
     {
