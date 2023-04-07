@@ -54,6 +54,17 @@ public class WaitingPositions : MonoBehaviour
         WaitingPosition previousWaitingPosition = customerWaitingPositions[0];
         foreach(WaitingPosition customerPosition in customerWaitingPositions)
         {
+            Transform currentCustomerPosition = customerPosition.transform;
+
+            if (currentCustomerPosition.childCount > 1)
+            {
+                Debug.Log(currentCustomerPosition + ":-> " + currentCustomerPosition.GetChild(1));
+
+                //if ()
+
+            }
+            
+            //Debug.Log(customerPosition);
             if (previousWaitingPosition == null && customerPosition.GetWaitingPositionChild() != null)
             {
                 previousWaitingPosition.SetWaitingPositionChild(customerPosition.GetWaitingPositionChild());

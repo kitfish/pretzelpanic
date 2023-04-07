@@ -161,6 +161,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
         if (!canDash)
         {
+            canMove = false;
             float moveDashDistance = moveDistance * dashDistance;
             bool canMoveDash = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDashDistance);
             if (!canMoveDash)
@@ -171,6 +172,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             dashTimer -= Time.deltaTime;
             if (dashTimer < 0)
             {
+                canMove = true;
                 canDash = true;
                 playerRigidBody.velocity = Vector3.zero;
             }
