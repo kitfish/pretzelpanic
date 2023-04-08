@@ -59,14 +59,18 @@ public class WaitingPositions : MonoBehaviour
             if (currentCustomerPosition.childCount > 1)
             {
                 Debug.Log(currentCustomerPosition + ":-> " + currentCustomerPosition.GetChild(1));
-
-                //if ()
+                
+                
 
             }
             
-            //Debug.Log(customerPosition);
+            // this code will go into the if statement above since we are checking to see if the waiting
+            // position has more than 1 child. the first child is always the plane object
+            // if a second child exists, it is the customer
             if (previousWaitingPosition == null && customerPosition.GetWaitingPositionChild() != null)
             {
+                // review setwaitingposition and getwaitingposition when not so tired
+                // they might need some checks for null or if multiple children exist too
                 previousWaitingPosition.SetWaitingPositionChild(customerPosition.GetWaitingPositionChild());
             }
 

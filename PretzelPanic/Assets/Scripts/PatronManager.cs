@@ -38,7 +38,8 @@ public class PatronManager : MonoBehaviour
 
     private void SpawnPatron()
     {
-        GameObject patron = Instantiate(patronGameObject, new Vector3(20f, 1f, 7f), Quaternion.identity);  
+        GameObject patron = Instantiate(patronGameObject, new Vector3(20f, 1f, 7f), Quaternion.identity);
+        
     }
 
 
